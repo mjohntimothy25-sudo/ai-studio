@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JohnAI Studio | Interactive AI, Software Engineering & Prompt Engineering Lab</title>
+  <meta name="description" content="Master Artificial Intelligence, Software Engineering, System Architecture, LLM Tokenization, and IoT Automation through hands-on 3D interactive models.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Reading Progress Bar -->
+  <div id="reading-progress" aria-hidden="true"></div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" aria-live="polite"></div>
+
+  <!-- Navigation Header -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="brand-logo" aria-label="JohnAI Studio Home">
+        <span class="logo-icon">✨</span>
+        <span class="logo-text">John<span class="highlight">AI Studio</span></span>
+      </a>
+
+      <nav class="nav-links" id="nav-links" aria-label="Main Navigation">
+        <a href="#what-is-ai" class="nav-item">What is AI?</a>
+        <a href="#software-field" class="nav-item">Software Field</a>
+        <a href="#tools-explorer" class="nav-item">Tools Explorer</a>
+        <a href="#prompting-101" class="nav-item">Prompting 101</a>
+        <a href="#interactive-lab" class="nav-item lab-link">
+          <span>Interactive Lab</span>
+          <span class="nav-badge" id="nav-lab-count">0/6</span>
+        </a>
+        <a href="#prompt-library" class="nav-item">Prompt Library</a>
+        <a href="#responsible-use" class="nav-item">Ethics & Safety</a>
+        <a href="#quiz-section" class="nav-item">Quiz</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Progress Ring Badge -->
+        <div class="lab-progress-widget" title="Lab Progress" id="progress-widget" tabIndex="0">
+          <svg class="progress-ring" width="36" height="36">
+            <circle class="progress-ring-bg" stroke="currentColor" stroke-width="3" fill="transparent" r="14" cx="18" cy="18"/>
+            <circle class="progress-ring-circle" id="global-progress-circle" stroke="currentColor" stroke-width="3" fill="transparent" r="14" cx="18" cy="18"/>
+          </svg>
+          <span class="progress-percent" id="global-progress-text">0%</span>
+        </div>
+
+        <!-- Dark/Light Theme Toggle -->
+        <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme" title="Toggle Light/Dark Mode">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon">🌙</span>
+        </button>
+
+        <!-- Voice AI Assistant Nav Button -->
+        <button id="nav-voice-btn" class="icon-btn voice-nav-btn" aria-label="Open Voice AI Assistant" title="Open AI Voice Chatbot (Ctrl+Shift+V)">
+          <span class="voice-nav-mic">🎙️</span>
+          <span class="nav-voice-label">Voice AI</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-btn" class="icon-btn mobile-only" aria-label="Toggle Menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- 1. HERO SECTION WITH 3D CANVAS BACKGROUND -->
+    <section id="hero" class="hero-section">
+      <canvas id="hero-3d-canvas" class="hero-canvas-3d"></canvas>
+      <div class="hero-bg-glow"></div>
+      
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="badge-pill">
+            <span class="pulse-dot"></span> 3D Interactive AI & Software Engineering Playground
+          </div>
+          <h1 class="hero-title">Master Artificial Intelligence & <span class="gradient-text">Software Engineering</span></h1>
+          <p class="hero-subtitle">
+            Explore 3D neural projections, system architecture simulators, prompt engineering formulas, LLM tokenizers, and smart tech workflows — no setup required.
+          </p>
+          <div class="hero-buttons">
+            <a href="#interactive-lab" class="btn btn-primary btn-lg">
+              <span>Explore 3D Interactive Lab</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#software-field" class="btn btn-secondary btn-lg">
+              <span>Software Field & Architecture</span>
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">6</span>
+              <span class="stat-label">3D & Interactive Models</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">15+</span>
+              <span class="stat-label">Dev & AI Prompts</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Browser Native</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero 3D Interactive Card Teaser -->
+        <div class="hero-teaser">
+          <div class="teaser-card glass-panel tilt-card">
+            <div class="teaser-header">
+              <span class="window-dot red"></span>
+              <span class="window-dot yellow"></span>
+              <span class="window-dot green"></span>
+              <span class="teaser-title">3D Tech Cloud & Token Engine</span>
+            </div>
+            <div class="teaser-body">
+              <div class="preview-prompt">
+                <span class="prompt-label">Software Field Pipeline:</span>
+                <p class="prompt-text">"User Query ➔ API Gateway ➔ LLM Cluster ➔ DB"</p>
+              </div>
+              <div class="preview-output">
+                <span class="output-label">Live System Response Distribution:</span>
+                <div class="word-bar-item">
+                  <span class="w-label">Tokenize</span>
+                  <div class="w-bar-wrap"><div class="w-bar" style="width: 92%;"></div></div>
+                  <span class="w-val">92%</span>
+                </div>
+                <div class="word-bar-item">
+                  <span class="w-label">Infer</span>
+                  <div class="w-bar-wrap"><div class="w-bar" style="width: 78%;"></div></div>
+                  <span class="w-val">78%</span>
+                </div>
+                <div class="word-bar-item">
+                  <span class="w-label">Stream</span>
+                  <div class="w-bar-wrap"><div class="w-bar" style="width: 65%;"></div></div>
+                  <span class="w-val">65%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. WHAT IS AI? SECTION -->
+    <section id="what-is-ai" class="section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tagline">Demystifying Technology</span>
+          <h2 class="section-title">What is Artificial Intelligence?</h2>
+          <p class="section-desc">
+            Let's break down the core jargon into simple, bite-sized concepts. Hover or click any underlined <span class="term-highlight" data-tooltip="A technical term explained in plain language">technical term</span> for instant definitions!
+          </p>
+        </div>
+
+        <!-- Concept Grid -->
+        <div class="concept-grid">
+          <div class="concept-card glass-panel tilt-card">
+            <div class="concept-icon blue">🤖</div>
+            <h3>Artificial Intelligence (AI)</h3>
+            <p>
+              The broad field of computer science focused on building smart machines capable of performing tasks that typically require human intelligence — like recognizing speech, making decisions, or translating languages.
+            </p>
+            <div class="concept-analogy">
+              💡 <strong>Analogy:</strong> If a regular computer program is a fixed recipe, AI is a chef that learns to adjust spices on the fly.
+            </div>
+          </div>
+
+          <div class="concept-card glass-panel tilt-card">
+            <div class="concept-icon purple">🧠</div>
+            <h3>Machine Learning (ML)</h3>
+            <p>
+              A subset of AI where computers learn patterns from large amounts of <span class="term-highlight" data-tooltip="Information fed into an AI system to help it learn rules or patterns">training data</span> instead of being explicitly programmed with fixed step-by-step rules.
+            </p>
+            <div class="concept-analogy">
+              💡 <strong>Analogy:</strong> Like showing a child thousands of dog photos until they recognize a dog instantly on their own.
+            </div>
+          </div>
+
+          <div class="concept-card glass-panel tilt-card">
+            <div class="concept-icon cyan">✨</div>
+            <h3>Generative AI (GenAI)</h3>
+            <p>
+              A specialized type of AI model that creates brand-new content — such as essay drafts, realistic images, music, or computer code — based on the patterns it learned from existing human creations.
+            </p>
+            <div class="concept-analogy">
+              💡 <strong>Analogy:</strong> Like an artist who reads millions of books and paints millions of pictures, then creates brand-new original artwork on demand.
+            </div>
+          </div>
+        </div>
+
+        <!-- Hierarchy Visualizer -->
+        <div class="hierarchy-box glass-panel margin-top-lg">
+          <h3 class="text-center margin-bottom-sm">How AI Concepts Nest Inside Each Other</h3>
+          <p class="text-center text-muted margin-bottom-md">Click any layer below to explore its relationship!</p>
+
+          <div class="nested-diagram">
+            <div class="layer layer-ai" id="layer-ai" tabIndex="0">
+              <span class="layer-title">Artificial Intelligence (Broadest Field)</span>
+              <div class="layer layer-ml" id="layer-ml" tabIndex="0">
+                <span class="layer-title">Machine Learning (Pattern Recognition)</span>
+                <div class="layer layer-dl" id="layer-dl" tabIndex="0">
+                  <span class="layer-title">Deep Learning (Neural Networks)</span>
+                  <div class="layer layer-genai" id="layer-genai" tabIndex="0">
+                    <span class="layer-title">Generative AI (ChatGPT, Midjourney, Copilot, etc.)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="hierarchy-info-box" class="info-callout margin-top-md">
+            <strong>Selected:</strong> Click any layer above to see how AI evolved into modern Generative models!
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. AI IN SOFTWARE ENGINEERING & TECH FIELD SECTION -->
+    <section id="software-field" class="section-padding bg-alt">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tagline">Industry & Tech Domain</span>
+          <h2 class="section-title">AI in the Software Engineering Field</h2>
+          <p class="section-desc">Discover how artificial intelligence transforms modern software development, system architecture, DevOps pipelines, and developer workflows.</p>
+        </div>
+
+        <div class="concept-grid">
+          <div class="concept-card glass-panel tilt-card">
+            <div class="concept-icon blue">⚡</div>
+            <h3>AI-Assisted Coding & Refactoring</h3>
+            <p>
+              Tools like GitHub Copilot and Cursor act as pair programmers, autocompleting code functions, writing unit tests, and detecting syntax bugs before compilation.
+            </p>
+            <div class="concept-analogy">
+              💡 <strong>Key Skill:</strong> Prompting AI with exact signatures, edge cases, and language constraints to get bug-free code.
+            </div>
+          </div>
+
+          <div class="concept-card glass-panel tilt-card">
+            <div class="concept-icon purple">🌐</div>
+            <h3>System Architecture & APIs</h3>
+            <p>
+              Modern software connects microservices, databases, caching layers, and LLM APIs (OpenAI, Anthropic, Gemini) via secure REST and gRPC endpoints.
+            </p>
+            <div class="concept-analogy">
+              💡 <strong>Key Skill:</strong> Designing scalable pipelines with rate limits, error fallbacks, and token budget management.
+            </div>
+          </div>
+
+          <div class="concept-card glass-panel tilt-card">
+            <div class="concept-icon cyan">🚀</div>
+            <h3>DevOps, CI/CD & Automation</h3>
+            <p>
+              Continuous Integration (CI) and Continuous Deployment (CD) pipelines use AI to automate code reviews, security vulnerability scanning, and cloud deployment.
+            </p>
+            <div class="concept-analogy">
+              💡 <strong>Key Skill:</strong> Automating test suites and infrastructure deployments with zero human downtime.
+            </div>
+          </div>
+        </div>
+
+        <!-- Software Development Lifecycle (SDLC) Interactive Map -->
+        <div class="sdlc-map-container glass-panel margin-top-xl">
+          <h3 class="text-center margin-bottom-md">The Modern AI-Powered Software Lifecycle</h3>
+          <div class="sdlc-steps-grid">
+            <div class="sdlc-step">
+              <span class="step-num">1</span>
+              <h4>Requirement & Planning</h4>
+              <p>Use AI to summarize user stories, draft system specs, and estimate sprint effort.</p>
+            </div>
+            <div class="sdlc-step">
+              <span class="step-num">2</span>
+              <h4>Architecture Design</h4>
+              <p>Diagram microservices, database schemas, and API gateway routing rules.</p>
+            </div>
+            <div class="sdlc-step">
+              <span class="step-num">3</span>
+              <h4>AI-Assisted Coding</h4>
+              <p>Write clean, modular code with real-time AI autocompletion and linting.</p>
+            </div>
+            <div class="sdlc-step">
+              <span class="step-num">4</span>
+              <h4>Automated Testing</h4>
+              <p>Generate edge-case unit tests (Jest, PyTest) and vulnerability scans.</p>
+            </div>
+            <div class="sdlc-step">
+              <span class="step-num">5</span>
+              <h4>CI/CD Deployment</h4>
+              <p>Deploy containers (Docker, K8s) into cloud environments with monitoring.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. AI TOOLS EXPLORER SECTION -->
+    <section id="tools-explorer" class="section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tagline">Student Tech Stack</span>
+          <h2 class="section-title">AI Tools Explorer</h2>
+          <p class="section-desc">Discover popular AI tools categorized by student use cases, pricing options, and pro tips.</p>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="filter-tabs" id="tools-filter-tabs" role="tablist">
+          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All Tools</button>
+          <button class="filter-btn" data-filter="chatbots" role="tab">💬 Chatbots</button>
+          <button class="filter-btn" data-filter="image" role="tab">🎨 Image Gen</button>
+          <button class="filter-btn" data-filter="coding" role="tab">💻 Coding & Dev</button>
+          <button class="filter-btn" data-filter="research" role="tab">📚 Research & Study</button>
+          <button class="filter-btn" data-filter="productivity" role="tab">⚡ Productivity</button>
+        </div>
+
+        <div class="tools-grid" id="tools-grid">
+          <!-- Cards populated dynamically via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PROMPT WRITING 101 SECTION -->
+    <section id="prompting-101" class="section-padding bg-alt">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tagline">The Art of AI Communication</span>
+          <h2 class="section-title">Prompt Writing 101</h2>
+          <p class="section-desc">A <span class="term-highlight" data-tooltip="The text instruction given to an AI model to tell it what to generate">prompt</span> is your instruction to the AI. Master the 5-part formula to get accurate, high-quality responses every single time.</p>
+        </div>
+
+        <!-- Formula Banner -->
+        <div class="formula-container glass-panel">
+          <h3 class="formula-title text-center">The Perfect Prompt Formula</h3>
+          <div class="formula-badges">
+            <div class="formula-pill role" title="Define who the AI should act as">
+              <span class="formula-icon">👤</span>
+              <span class="formula-name">Role</span>
+            </div>
+            <span class="plus">+</span>
+            <div class="formula-pill task" title="State clearly what you want done">
+              <span class="formula-icon">🎯</span>
+              <span class="formula-name">Task</span>
+            </div>
+            <span class="plus">+</span>
+            <div class="formula-pill context" title="Provide background info & scenario">
+              <span class="formula-icon">📖</span>
+              <span class="formula-name">Context</span>
+            </div>
+            <span class="plus">+</span>
+            <div class="formula-pill format" title="Specify how the output should look">
+              <span class="formula-icon">📐</span>
+              <span class="formula-name">Format</span>
+            </div>
+            <span class="plus">+</span>
+            <div class="formula-pill constraints" title="Set limits on tone, length, or rules">
+              <span class="formula-icon">⛔</span>
+              <span class="formula-name">Constraints</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Formula Breakdown Cards -->
+        <div class="formula-details-grid margin-top-lg">
+          <div class="f-detail-card role">
+            <h4>1. Role 👤</h4>
+            <p>Assign a persona or field of expertise to set the AI's perspective.</p>
+            <code>"Act as a senior DevOps engineer..."</code>
+          </div>
+          <div class="f-detail-card task">
+            <h4>2. Task 🎯</h4>
+            <p>Use strong action verbs to state the core goal explicitly.</p>
+            <code>"Refactor this Python REST API function..."</code>
+          </div>
+          <div class="f-detail-card context">
+            <h4>3. Context 📖</h4>
+            <p>Give relevant background, audience level, or topic boundaries.</p>
+            <code>"...handling high concurrent database traffic."</code>
+          </div>
+          <div class="f-detail-card format">
+            <h4>4. Format 📐</h4>
+            <p>Define structure: bullet points, 2-column table, code blocks.</p>
+            <code>"Provide optimized code with line comments."</code>
+          </div>
+          <div class="f-detail-card constraints">
+            <h4>5. Constraints ⛔</h4>
+            <p>Set strict rules: length limits, tone requirements, things to avoid.</p>
+            <code>"Use async/await. Avoid external third-party libs."</code>
+          </div>
+        </div>
+
+        <!-- Bad vs Good Comparisons -->
+        <div class="comparison-section margin-top-xl">
+          <h3 class="text-center margin-bottom-md">Bad Prompt vs. Good Prompt Comparisons</h3>
+
+          <div class="comparison-card glass-panel">
+            <div class="comp-side bad">
+              <div class="comp-badge bad-badge">❌ Vague Prompt</div>
+              <p class="comp-text">"Write a essay on climate change."</p>
+              <div class="comp-flaws">
+                <strong>Why it fails:</strong> No length specified, no target audience, generic tone, high risk of fluffy or irrelevant response.
+              </div>
+            </div>
+            <div class="comp-divider">VS</div>
+            <div class="comp-side good">
+              <div class="comp-badge good-badge">✅ Master Prompt</div>
+              <p class="comp-text">
+                "<span class="hl-role">[Role]</span> Act as an environmental science professor. <span class="hl-task">[Task]</span> Write an introductory summary on climate change impacts on ocean reefs. <span class="hl-context">[Context]</span> Target high school students. <span class="hl-format">[Format]</span> Use 3 clear paragraphs with a summary bullet list. <span class="hl-constraints">[Constraints]</span> Max 250 words, friendly tone."
+              </p>
+              <div class="comp-perks">
+                <strong>Why it wins:</strong> Direct, focused, structured output tailored to the exact audience.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. INTERACTIVE LAB SECTION (THE CORE WITH 3D SIMULATOR) -->
+    <section id="interactive-lab" class="section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tagline">Hands-On 3D Playground</span>
+          <h2 class="section-title">The Interactive AI & Software Lab</h2>
+          <p class="section-desc">
+            Play with 6 live, fully functioning interactive models built directly in your browser with real-time 3D canvas rendering and parameter sliders.
+          </p>
+        </div>
+
+        <!-- Lab Tracker Bar -->
+        <div class="lab-tracker-bar glass-panel margin-bottom-xl">
+          <div class="tracker-info">
+            <span class="tracker-title">🎓 Your Lab Completion Status</span>
+            <span class="tracker-count" id="lab-completed-text">0 of 6 Models Completed</span>
+          </div>
+          <div class="tracker-progress-bg">
+            <div class="tracker-progress-fill" id="lab-progress-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- MODELS LIST -->
+        <div class="lab-models-grid">
+
+          <!-- MODEL 1: How LLMs Predict Words -->
+          <article class="lab-card glass-panel tilt-card" id="model-1" data-model-id="llm-predictor">
+            <div class="lab-card-header">
+              <div class="model-title-wrap">
+                <span class="model-number">01</span>
+                <h3>How LLMs Predict Words & Temperature</h3>
+              </div>
+              <button class="completion-btn" data-target="model-1">
+                <span class="check-icon">✓</span> <span class="comp-text">Mark Completed</span>
+              </button>
+            </div>
+
+            <div class="lab-card-body">
+              <div class="model-explanation">
+                <h4>What you're seeing:</h4>
+                <p>
+                  Large Language Models (LLMs) break text into <span class="term-highlight" data-tooltip="Tokens are word fragments or whole words used as basic units by AI text models.">tokens</span> and predict the next word based on probability distributions. Tweak <span class="term-highlight" data-tooltip="Temperature controls randomness: 0.0 is strict and deterministic, while 1.0+ is creative and unpredictable.">Temperature</span> to see randomness in action!
+                </p>
+              </div>
+
+              <div class="model-workbench">
+                <div class="llm-input-area">
+                  <label for="llm-prompt-select">Select a starter sentence:</label>
+                  <select id="llm-prompt-select" class="form-control margin-bottom-sm">
+                    <option value="The future of artificial intelligence is">"The future of artificial intelligence is..."</option>
+                    <option value="Students who learn to prompt effectively can">"Students who learn to prompt effectively can..."</option>
+                    <option value="In a world powered by smart technology">"In a world powered by smart technology..."</option>
+                  </select>
+
+                  <div class="tokens-display" id="llm-tokens-box"></div>
+                  <div class="generated-text-box margin-top-sm" id="llm-generated-output"></div>
+                </div>
+
+                <div class="llm-sidebar">
+                  <div class="control-group">
+                    <label for="llm-temp-slider">Temperature: <strong id="llm-temp-val">0.7</strong></label>
+                    <input type="range" id="llm-temp-slider" min="0.1" max="1.5" step="0.1" value="0.7" class="form-slider">
+                    <div class="slider-labels">
+                      <span>Low (Strict)</span>
+                      <span>High (Creative)</span>
+                    </div>
+                  </div>
+
+                  <div class="chart-container margin-top-sm">
+                    <span class="chart-title">Top-5 Next Word Probabilities:</span>
+                    <div class="prob-bars" id="llm-prob-bars"></div>
+                  </div>
+
+                  <!-- Advanced Transformer Self-Attention Matrix Visualizer -->
+                  <div class="attention-viz-wrap margin-top-sm">
+                    <div class="attention-header">
+                      <span class="viz-tag">🧠 Transformer Multi-Head Self-Attention Matrix</span>
+                      <span class="viz-sub">Hover tokens to view attention weights</span>
+                    </div>
+                    <canvas id="llm-attention-canvas" width="460" height="130" aria-label="Transformer Self-Attention Heatmap"></canvas>
+                  </div>
+
+                  <div class="button-row margin-top-md">
+                    <button id="llm-step-btn" class="btn btn-secondary btn-sm">▶ Generate Next Word</button>
+                    <button id="llm-auto-btn" class="btn btn-primary btn-sm">⚡ Auto-Complete</button>
+                    <button id="llm-reset-btn" class="btn btn-outline btn-sm">🔄 Reset</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="model-challenge margin-top-md">
+                🎯 <strong>Try this challenge:</strong> Set Temperature to 0.1 and generate text 3 times — notice it stays identical! Now set Temperature to 1.4 and watch the outputs become wild and unexpected.
+              </div>
+            </div>
+          </article>
+
+          <!-- MODEL 2: Prompt Quality Analyzer -->
+          <article class="lab-card glass-panel tilt-card" id="model-2" data-model-id="prompt-analyzer">
+            <div class="lab-card-header">
+              <div class="model-title-wrap">
+                <span class="model-number">02</span>
+                <h3>Prompt Quality Analyzer</h3>
+              </div>
+              <button class="completion-btn" data-target="model-2">
+                <span class="check-icon">✓</span> <span class="comp-text">Mark Completed</span>
+              </button>
+            </div>
+
+            <div class="lab-card-body">
+              <div class="model-explanation">
+                <h4>What you're seeing:</h4>
+                <p>
+                  Type any prompt below to evaluate its strength in real time based on the 5-part formula (Role, Task, Context, Format, Constraints).
+                </p>
+              </div>
+
+              <div class="model-workbench vertical">
+                <div class="analyzer-input-wrap">
+                  <label for="analyzer-input">Type or paste your prompt:</label>
+                  <textarea id="analyzer-input" class="form-control prompt-textarea" rows="4" placeholder="e.g. Act as a tutor. Explain quantum computing to a high schooler in 3 bullet points under 100 words."></textarea>
+                </div>
+
+                <div class="analyzer-dashboard margin-top-md">
+                  <div class="score-box">
+                    <div class="score-circle" id="analyzer-score-circle">
+                      <span class="score-val" id="analyzer-score-num">0</span>
+                      <span class="score-max">/100</span>
+                    </div>
+                    <span class="score-label" id="analyzer-score-label">Needs Work</span>
+                  </div>
+
+                  <div class="checklist-box">
+                    <h5>Detected Components:</h5>
+                    <div class="check-grid">
+                      <div class="check-item" id="chk-role"><span class="chk-icon">❌</span> Role (Persona)</div>
+                      <div class="check-item" id="chk-task"><span class="chk-icon">❌</span> Task (Action Verb)</div>
+                      <div class="check-item" id="chk-context"><span class="chk-icon">❌</span> Context (Background)</div>
+                      <div class="check-item" id="chk-format"><span class="chk-icon">❌</span> Format (Structure)</div>
+                      <div class="check-item" id="chk-constraints"><span class="chk-icon">❌</span> Constraints (Limits)</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="suggestions-box margin-top-md" id="analyzer-tips">
+                  💡 <strong>Improvement Tips:</strong> Start typing above to get personalized suggestions!
+                </div>
+
+                <div class="button-row margin-top-md">
+                  <button id="analyzer-improve-btn" class="btn btn-primary btn-sm">✨ Auto-Improve Prompt</button>
+                  <button id="analyzer-reset-btn" class="btn btn-outline btn-sm">🔄 Clear Text</button>
+                </div>
+              </div>
+
+              <div class="model-challenge margin-top-md">
+                🎯 <strong>Try this challenge:</strong> Type "write a essay" and see your score (~20/100). Click "Auto-Improve Prompt" to see it upgrade into a 100/100 master prompt!
+              </div>
+            </div>
+          </article>
+
+          <!-- MODEL 3: Mock AI Chat Simulator -->
+          <article class="lab-card glass-panel tilt-card" id="model-3" data-model-id="chat-simulator">
+            <div class="lab-card-header">
+              <div class="model-title-wrap">
+                <span class="model-number">03</span>
+                <h3>Mock AI Chat Simulator (Vague vs. Detailed)</h3>
+              </div>
+              <button class="completion-btn" data-target="model-3">
+                <span class="check-icon">✓</span> <span class="comp-text">Mark Completed</span>
+              </button>
+            </div>
+
+            <div class="lab-card-body">
+              <div class="model-explanation">
+                <h4>What you're seeing:</h4>
+                <p>
+                  Compare side-by-side how an AI assistant responds when asked a vague question versus a detailed, structured prompt.
+                </p>
+              </div>
+
+              <div class="model-workbench vertical">
+                <div class="topic-selector margin-bottom-sm">
+                  <label for="chat-preset-select">Choose a topic scenario:</label>
+                  <select id="chat-preset-select" class="form-control">
+                    <option value="study">Study Plan for Exams</option>
+                    <option value="coding">Debugging Python Code</option>
+                    <option value="essay">Brainstorming Essay Topics</option>
+                  </select>
+                </div>
+
+                <div class="side-by-side-chat">
+                  <div class="chat-column vague-column">
+                    <div class="chat-column-header bad-badge">❌ Vague Prompt Response</div>
+                    <div class="chat-messages-box" id="chat-vague-box"></div>
+                  </div>
+
+                  <div class="chat-column detailed-column">
+                    <div class="chat-column-header good-badge">✅ Detailed Prompt Response</div>
+                    <div class="chat-messages-box" id="chat-detailed-box"></div>
+                  </div>
+                </div>
+
+                <div class="button-row margin-top-md">
+                  <button id="chat-run-btn" class="btn btn-primary btn-sm">▶ Send Questions Side-by-Side</button>
+                  <button id="chat-reset-btn" class="btn btn-outline btn-sm">🔄 Reset Chat</button>
+                </div>
+              </div>
+
+              <div class="model-challenge margin-top-md">
+                🎯 <strong>Try this challenge:</strong> Switch between "Study Plan" and "Coding". Notice how the detailed prompt gives formatted tables and step-by-step code, while the vague prompt gives generic advice!
+              </div>
+            </div>
+          </article>
+
+          <!-- MODEL 4: 3D SOFTWARE ARCHITECTURE & REQUEST FLOW SIMULATOR -->
+          <article class="lab-card glass-panel tilt-card" id="model-4" data-model-id="arch-simulator">
+            <div class="lab-card-header">
+              <div class="model-title-wrap">
+                <span class="model-number">04</span>
+                <h3>3D Software Architecture & Request Flow Simulator</h3>
+              </div>
+              <button class="completion-btn" data-target="model-4">
+                <span class="check-icon">✓</span> <span class="comp-text">Mark Completed</span>
+              </button>
+            </div>
+
+            <div class="lab-card-body">
+              <div class="model-explanation">
+                <h4>What you're seeing:</h4>
+                <p>
+                  A 3D perspective visualization of modern cloud software infrastructure! Watch data packets travel from the Client Device to the API Gateway, Load Balancer, AI Microservice, and Database.
+                </p>
+              </div>
+
+              <div class="model-workbench">
+                <div class="canvas-wrap">
+                  <canvas id="arch-3d-canvas" width="340" height="340" aria-label="3D System Architecture Canvas"></canvas>
+                  <div class="canvas-overlay-stats">
+                    <span>Requests: <strong id="arch-req-count">0</strong></span>
+                    <span>Latency: <strong id="arch-latency">18ms</strong></span>
+                  </div>
+                  <div class="canvas-hint">Drag mouse to rotate 3D view</div>
+                </div>
+
+                <div class="model-controls">
+                  <div class="control-group">
+                    <label for="arch-load-slider">Simulated Traffic Load: <strong id="arch-load-val">100 req/sec</strong></label>
+                    <input type="range" id="arch-load-slider" min="10" max="500" step="10" value="100" class="form-slider">
+                  </div>
+
+                  <!-- Live System Microservice Data Flow Visualizer -->
+                  <div class="flow-canvas-wrap margin-top-sm">
+                    <span class="viz-tag">⚡ Live Microservice Data Pipeline Flow</span>
+                    <canvas id="arch-flow-canvas" width="360" height="90" aria-label="Microservice Data Flow Pipeline"></canvas>
+                  </div>
+
+                  <div class="control-group">
+                    <label for="arch-nodes-select">AI Microservice Scaling:</label>
+                    <select id="arch-nodes-select" class="form-control">
+                      <option value="1">1 Node (Single Server)</option>
+                      <option value="3" selected>3 Nodes (Auto-Scaled Cluster)</option>
+                      <option value="5">5 Nodes (High-Availability Cloud)</option>
+                    </select>
+                  </div>
+
+                  <div class="info-callout text-sm" id="arch-status-info">
+                    🟢 <strong>System Status:</strong> Optimal throughput. Packet loss: 0.0%
+                  </div>
+
+                  <div class="button-row margin-top-sm">
+                    <button id="arch-send-packet-btn" class="btn btn-primary btn-sm">⚡ Trigger Traffic Spike</button>
+                    <button id="arch-reset-btn" class="btn btn-outline btn-sm">🔄 Reset Architecture</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="model-challenge margin-top-md">
+                🎯 <strong>Try this challenge:</strong> Increase simulated traffic load to 500 req/sec while running on 1 Node. Notice how latency rises! Now switch scaling to 5 Nodes to balance the request load.
+              </div>
+            </div>
+          </article>
+
+          <!-- MODEL 5: IoT Smart Home Simulator -->
+          <article class="lab-card glass-panel tilt-card" id="model-5" data-model-id="iot-simulator">
+            <div class="lab-card-header">
+              <div class="model-title-wrap">
+                <span class="model-number">05</span>
+                <h3>IoT Smart Home & IF-THEN Rule Simulator</h3>
+              </div>
+              <button class="completion-btn" data-target="model-5">
+                <span class="check-icon">✓</span> <span class="comp-text">Mark Completed</span>
+              </button>
+            </div>
+
+            <div class="lab-card-body">
+              <div class="model-explanation">
+                <h4>What you're seeing:</h4>
+                <p>
+                  How Smart IoT (Internet of Things) devices and edge AI automate physical environments using rule-based decision logic (IF condition THEN action).
+                </p>
+              </div>
+
+              <div class="model-workbench">
+                <div class="smart-room">
+                  <div class="room-device device-fan" id="dev-fan">
+                    <span class="dev-icon">🌀</span>
+                    <span class="dev-name">Smart Fan</span>
+                    <span class="dev-status badge-off" id="fan-status">OFF</span>
+                  </div>
+
+                  <div class="room-device device-lamp" id="dev-lamp">
+                    <span class="dev-icon">💡</span>
+                    <span class="dev-name">Smart Lamp</span>
+                    <span class="dev-status badge-off" id="lamp-status">OFF</span>
+                  </div>
+
+                  <div class="room-device device-alarm" id="dev-alarm">
+                    <span class="dev-icon">🚨</span>
+                    <span class="dev-name">Security Alarm</span>
+                    <span class="dev-status badge-off" id="alarm-status">OFF</span>
+                  </div>
+                </div>
+
+                <div class="iot-controls-panel">
+                  <h5>1. Environmental Sensors (Inputs)</h5>
+                  <div class="sensor-row">
+                    <label for="sensor-temp">Temperature: <strong id="temp-val">24</strong>°C</label>
+                    <input type="range" id="sensor-temp" min="10" max="45" value="24" class="form-slider">
+                  </div>
+
+                  <div class="sensor-row">
+                    <label for="sensor-light">Ambient Light: <strong id="light-val">70</strong>%</label>
+                    <input type="range" id="sensor-light" min="0" max="100" value="70" class="form-slider">
+                  </div>
+
+                  <div class="sensor-row">
+                    <label>Motion Detected:</label>
+                    <button class="btn btn-outline btn-sm" id="sensor-motion-btn">Motion: NO 🏃‍♂️</button>
+                  </div>
+
+                  <h5 class="margin-top-md">2. Active Automation Rules</h5>
+                  <ul class="rules-list" id="iot-rules-list">
+                    <li>IF Temp &gt; 30°C THEN Fan = ON</li>
+                    <li>IF Ambient Light &lt; 30% THEN Lamp = ON</li>
+                    <li>IF Motion = YES THEN Alarm = ON</li>
+                  </ul>
+
+                  <div class="button-row margin-top-md">
+                    <button id="iot-reset-btn" class="btn btn-outline btn-sm">🔄 Reset Environment</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="model-challenge margin-top-md">
+                🎯 <strong>Try this challenge:</strong> Drag Temperature above 30°C to see the fan spin! Lower Ambient Light below 30% to watch the smart lamp light up.
+              </div>
+            </div>
+          </article>
+
+          <!-- MODEL 6: Token and Cost Estimator -->
+          <article class="lab-card glass-panel tilt-card" id="model-6" data-model-id="token-estimator">
+            <div class="lab-card-header">
+              <div class="model-title-wrap">
+                <span class="model-number">06</span>
+                <h3>Token & API Cost Estimator</h3>
+              </div>
+              <button class="completion-btn" data-target="model-6">
+                <span class="check-icon">✓</span> <span class="comp-text">Mark Completed</span>
+              </button>
+            </div>
+
+            <div class="lab-card-body">
+              <div class="model-explanation">
+                <h4>What you're seeing:</h4>
+                <p>
+                  AI APIs charge per <span class="term-highlight" data-tooltip="A token is roughly 4 characters or 0.75 words in English. AI services bill based on total input + output tokens.">token</span>. Paste your text below to calculate token counts and estimated costs across major AI models!
+                </p>
+              </div>
+
+              <div class="model-workbench vertical">
+                <div class="estimator-input-wrap">
+                  <label for="token-input">Paste or type text to inspect:</label>
+                  <textarea id="token-input" class="form-control prompt-textarea" rows="4" placeholder="Paste your essay, code, or prompt here to calculate tokens and estimated cost..."></textarea>
+                </div>
+
+                <div class="stats-row margin-top-md">
+                  <div class="mini-stat-card">
+                    <span class="m-val" id="tok-count-char">0</span>
+                    <span class="m-lbl">Characters</span>
+                  </div>
+                  <div class="mini-stat-card">
+                    <span class="m-val" id="tok-count-word">0</span>
+                    <span class="m-lbl">Words</span>
+                  </div>
+                  <div class="mini-stat-card highlight-stat">
+                    <span class="m-val" id="tok-count-tokens">0</span>
+                    <span class="m-lbl">Est. Tokens</span>
+                  </div>
+                </div>
+
+                <div class="table-responsive margin-top-md">
+                  <table class="cost-table">
+                    <thead>
+                      <tr>
+                        <th>Model Tier</th>
+                        <th>Input Cost / 1M</th>
+                        <th>Estimated Prompt Cost</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>GPT-4o (Flagship)</strong></td>
+                        <td>$2.50</td>
+                        <td id="cost-gpt4o">$0.0000</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Claude 3.5 Sonnet</strong></td>
+                        <td>$3.00</td>
+                        <td id="cost-claude">$0.0000</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Gemini 1.5 Flash (Budget)</strong></td>
+                        <td>$0.075</td>
+                        <td id="cost-gemini">$0.0000</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="button-row margin-top-md">
+                  <button id="token-sample-btn" class="btn btn-secondary btn-sm">📄 Insert 500-Word Essay Sample</button>
+                  <button id="token-reset-btn" class="btn btn-outline btn-sm">🔄 Clear Text</button>
+                </div>
+              </div>
+
+              <div class="model-challenge margin-top-md">
+                🎯 <strong>Try this challenge:</strong> Click "Insert 500-Word Essay Sample". Notice how Gemini 1.5 Flash is over 30x cheaper than flagship models for long prompts!
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. PROMPT EXAMPLES LIBRARY SECTION (WITH DEV PROMPTS) -->
+    <section id="prompt-library" class="section-padding bg-alt">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tagline">Ready-to-Use Templates</span>
+          <h2 class="section-title">Prompt Examples Library</h2>
+          <p class="section-desc">Copy, customize, and paste these field-tested prompts into ChatGPT, Claude, Cursor, or Gemini for instant academic, coding, and software engineering success.</p>
+        </div>
+
+        <div class="library-controls">
+          <div class="search-box-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="prompt-search-input" class="form-control search-input" placeholder="Search prompts by keyword (e.g. docker, python, essay, architecture)...">
+          </div>
+
+          <div class="filter-tabs margin-top-sm" id="library-tabs">
+            <button class="filter-btn active" data-cat="all">All Prompts</button>
+            <button class="filter-btn" data-cat="academic">📝 Academic & Writing</button>
+            <button class="filter-btn" data-cat="coding">💻 Coding & Software Dev</button>
+            <button class="filter-btn" data-cat="creative">🎨 Creative & Architecture</button>
+            <button class="filter-btn" data-cat="productivity">⚡ Productivity & DevOps</button>
+          </div>
+        </div>
+
+        <div class="prompts-grid margin-top-lg" id="prompts-grid"></div>
+      </div>
+    </section>
+
+    <!-- 8. RESPONSIBLE USE & ETHICS SECTION -->
+    <section id="responsible-use" class="section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tagline">Ethics & Digital Citizenship</span>
+          <h2 class="section-title">Responsible AI Use for Developers & Students</h2>
+          <p class="section-desc">AI is a powerful thought partner, not a replacement for your original thinking or code security audits.</p>
+        </div>
+
+        <div class="dodont-grid">
+          <div class="dodont-card do-card glass-panel tilt-card">
+            <h3 class="do-title">✅ DO (Best Practices)</h3>
+            <ul class="dodont-list">
+              <li><strong>Use AI for brainstorming:</strong> Generate outline ideas, alternative code refactoring angles, or study questions.</li>
+              <li><strong>Fact-check everything:</strong> Verify claims, statistics, and API syntax against official documentation.</li>
+              <li><strong>Learn concepts step-by-step:</strong> Ask AI to explain complex system designs or debugging error logs.</li>
+              <li><strong>Cite AI transparently:</strong> Follow school and repository open-source guidelines when AI assists your work.</li>
+              <li><strong>Protect your privacy:</strong> Never submit private API keys, user passwords, or confidential corporate secrets into public AI chats.</li>
+            </ul>
+          </div>
+
+          <div class="dodont-card dont-card glass-panel tilt-card">
+            <h3 class="dont-title">❌ DON'T (Pitfalls to Avoid)</h3>
+            <ul class="dodont-list">
+              <li><strong>Don't copy-paste code blindly:</strong> Unchecked AI code can contain critical security vulnerabilities or deprecated functions.</li>
+              <li><strong>Don't trust AI blindly:</strong> Models can hallucinate fake library package names or non-existent API parameters.</li>
+              <li><strong>Don't bypass learning:</strong> Relying solely on AI to solve coding assignments prevents deep algorithmic thinking.</li>
+              <li><strong>Don't upload proprietary secrets:</strong> Keep confidential production code out of unvetted AI models.</li>
+              <li><strong>Don't ignore license terms:</strong> Verify open-source software license compatibility when consuming AI snippets.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="citation-box glass-panel margin-top-xl">
+          <h3>📚 How to Cite AI in Academic & Software Work</h3>
+          <p>When permitted by your instructor or organization, cite AI interactions properly:</p>
+          <div class="citation-examples">
+            <div class="cite-item">
+              <strong>MLA Style:</strong>
+              <code>OpenAI. "ChatGPT response to query regarding photosynthesis." ChatGPT, 15 Sep. 2026, chatgpt.com.</code>
+            </div>
+            <div class="cite-item margin-top-xs">
+              <strong>Code Comment Citation:</strong>
+              <code># Code generated with assistance from GitHub Copilot (GPT-4o) on 2026-10-01. Reviewed and tested manually.</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. QUICK QUIZ SECTION -->
+    <section id="quiz-section" class="section-padding bg-alt">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tagline">Test Your Knowledge</span>
+          <h2 class="section-title">AI & Software Engineering Quiz</h2>
+          <p class="section-desc">Answer 8 short questions to test what you've learned and earn your completion certificate score!</p>
+        </div>
+
+        <div class="quiz-container glass-panel">
+          <div class="quiz-header">
+            <span class="quiz-progress-text" id="quiz-progress-text">Question 1 of 8</span>
+            <div class="quiz-progress-bar">
+              <div class="quiz-progress-fill" id="quiz-progress-fill" style="width: 12.5%;"></div>
+            </div>
+          </div>
+
+          <div class="quiz-body" id="quiz-body">
+            <h3 class="quiz-question" id="quiz-question-text">Loading Question...</h3>
+            <div class="quiz-options" id="quiz-options-container"></div>
+            <div class="quiz-feedback hidden" id="quiz-feedback-box"></div>
+          </div>
+
+          <div class="quiz-summary hidden text-center" id="quiz-summary-box">
+            <div class="badge-icon-lg" id="quiz-badge-icon">🏆</div>
+            <h3 id="quiz-score-title">Quiz Completed!</h3>
+            <p class="quiz-score-subtitle" id="quiz-score-detail">You scored 8 out of 8 (100%)</p>
+            <p class="quiz-rank-tag" id="quiz-rank-tag">Rank: Software & AI Master Architect 🌟</p>
+
+            <div class="button-row margin-top-md center-buttons">
+              <button id="quiz-restart-btn" class="btn btn-primary">🔄 Retake Quiz</button>
+              <a href="#interactive-lab" class="btn btn-secondary">🎓 Return to Lab</a>
+            </div>
+          </div>
+
+          <div class="quiz-footer" id="quiz-footer-nav">
+            <button id="quiz-next-btn" class="btn btn-primary btn-sm" disabled>Next Question ➔</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. RESOURCES & FOOTER SECTION -->
+    <section id="resources" class="section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tagline">Continue Your Journey</span>
+          <h2 class="section-title">Learning Resources & Software Glossary</h2>
+        </div>
+
+        <div class="resources-grid">
+          <div class="res-card glass-panel">
+            <h3>📖 Recommended Free Courses</h3>
+            <ul>
+              <li><a href="https://www.elements-of-ai.com" target="_blank" rel="noopener">Elements of AI (University of Helsinki)</a></li>
+              <li><a href="https://learnprompting.org" target="_blank" rel="noopener">LearnPrompting.org (Beginner & Dev Guide)</a></li>
+              <li><a href="https://roadmap.sh" target="_blank" rel="noopener">Developer Roadmaps (Full Stack & AI Engineer)</a></li>
+            </ul>
+          </div>
+
+          <div class="res-card glass-panel">
+            <h3>🔤 Essential Technical Glossary</h3>
+            <ul>
+              <li><strong>Token:</strong> The basic chunk of text (word or fragment) processed by language models.</li>
+              <li><strong>API Gateway:</strong> A single entry-point service routing client requests to backend microservices.</li>
+              <li><strong>Temperature:</strong> A slider parameter controlling output randomness and creativity in LLMs.</li>
+              <li><strong>CI/CD:</strong> Continuous Integration and Deployment pipelines automating code builds and releases.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <span class="logo-icon">✨</span>
+        <span class="logo-text">John<span class="highlight">AI Studio</span></span>
+        <p>Empowering students to understand, shape, and master artificial intelligence and software engineering responsibly.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#hero">Back to Top ↑</a>
+        <a href="#interactive-lab">3D Lab Models</a>
+        <a href="#software-field">Software Field</a>
+        <a href="#prompting-101">Prompt Engineering</a>
+        <a href="#responsible-use">Ethics Guide</a>
+      </div>
+    </div>
+    <div class="footer-bottom text-center">
+      <p>© 2026 JohnAI Studio — Built with HTML, Vanilla CSS & Vanilla JavaScript with 3D Canvas Rendering.</p>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       JOHN AI STUDIO - AI POWERED VOICE CHATBOT WIDGET & GLASSMORPHISM MODAL
+       ========================================================================== -->
+  <!-- Voice AI Floating Action Button -->
+  <button id="voice-fab" class="voice-fab-btn" aria-label="Open Voice AI Assistant" title="AI Voice Assistant (Ctrl+Shift+V)">
+    <div class="voice-fab-ripples">
+      <span class="ripple r1"></span>
+      <span class="ripple r2"></span>
+    </div>
+    <div class="voice-fab-inner">
+      <span class="fab-icon-mic">🎙️</span>
+      <span class="fab-pulse-badge">Voice AI</span>
+    </div>
+  </button>
+
+  <!-- Voice AI Assistant Modal / Panel -->
+  <div id="voice-modal" class="voice-modal-overlay" aria-hidden="true">
+    <div class="voice-modal-backdrop" id="voice-modal-backdrop"></div>
+    <div class="voice-modal-card" role="dialog" aria-labelledby="voice-modal-title" aria-modal="true">
+      
+      <!-- Card Header -->
+      <div class="voice-card-header">
+        <div class="voice-header-brand">
+          <div class="voice-avatar">
+            <span class="avatar-sparkle">✨</span>
+            <span class="voice-status-dot idle" id="voice-status-dot"></span>
+          </div>
+          <div class="voice-header-titles">
+            <h3 id="voice-modal-title" class="voice-title-text">JohnAI Voice Assistant</h3>
+            <span class="voice-subtitle-text" id="voice-status-text">Ready • Click 🎙️ or pick a prompt</span>
+          </div>
+        </div>
+
+        <div class="voice-header-actions">
+          <button id="voice-persona-btn" class="icon-btn-sm" title="AI Intelligence Mode" aria-label="AI Mode">🧠</button>
+          <button id="voice-export-btn" class="icon-btn-sm" title="Export Chat Markdown" aria-label="Export Chat">📥</button>
+          <button id="voice-settings-toggle-btn" class="icon-btn-sm" title="Voice Settings" aria-label="Voice Settings">⚙️</button>
+          <button id="voice-clear-btn" class="icon-btn-sm" title="Clear Conversation" aria-label="Clear Chat">🗑️</button>
+          <button id="voice-close-btn" class="icon-btn-sm close-btn" title="Close Assistant" aria-label="Close">✕</button>
+        </div>
+      </div>
+
+      <!-- AI Persona Selector Drawer -->
+      <div id="voice-persona-panel" class="voice-persona-panel hidden">
+        <span class="persona-title">Select AI Expert Persona:</span>
+        <div class="persona-grid">
+          <button class="persona-btn active" data-persona="scholar">
+            <span>🧠 JohnAI Scholar</span>
+            <small>Deep AI & Transformer Math</small>
+          </button>
+          <button class="persona-btn" data-persona="coder">
+            <span>⚡ Code Architect</span>
+            <small>Clean Code & System Design</small>
+          </button>
+          <button class="persona-btn" data-persona="prompter">
+            <span>🎨 Prompt Engineer</span>
+            <small>100/100 Formula Analysis</small>
+          </button>
+          <button class="persona-btn" data-persona="controller">
+            <span>🚀 Live Workbench Agent</span>
+            <small>Directly Controls 3D Models</small>
+          </button>
+        </div>
+      </div>
+
+      <!-- Collapsible Settings Panel -->
+      <div id="voice-settings-panel" class="voice-settings-panel hidden">
+        <div class="setting-row">
+          <label for="voice-select-dropdown">Voice Avatar:</label>
+          <select id="voice-select-dropdown" class="voice-select-input">
+            <option value="">Default AI Voice</option>
+          </select>
+        </div>
+        <div class="setting-grid">
+          <div class="setting-col">
+            <label for="voice-pitch-range">Pitch (<span id="voice-pitch-val">1.0</span>)</label>
+            <input type="range" id="voice-pitch-range" min="0.5" max="1.5" step="0.1" value="1.0">
+          </div>
+          <div class="setting-col">
+            <label for="voice-speed-range">Speed (<span id="voice-speed-val">1.0x</span>)</label>
+            <input type="range" id="voice-speed-range" min="0.7" max="1.5" step="0.1" value="1.0">
+          </div>
+        </div>
+        <div class="setting-row checkbox-row">
+          <label class="toggle-switch">
+            <input type="checkbox" id="voice-auto-speak" checked>
+            <span class="slider"></span>
+          </label>
+          <span class="toggle-label">Auto-speak AI responses</span>
+        </div>
+      </div>
+
+      <!-- Real-time Audio Spectrum & Waveform Canvas Visualizer -->
+      <div class="voice-visualizer-container">
+        <canvas id="voice-canvas-visualizer" width="480" height="64"></canvas>
+        <div class="voice-visualizer-badge" id="visualizer-status-badge">
+          <span class="vis-pulse"></span>
+          <span id="visualizer-mode-label">IDLE • AWAITING VOICE</span>
+        </div>
+      </div>
+
+      <!-- Quick Voice Prompt Chips -->
+      <div class="voice-chips-scroll" id="voice-chips-container">
+        <button class="voice-chip-btn" data-prompt="What is JohnAI Studio?">✨ What is JohnAI Studio?</button>
+        <button class="voice-chip-btn" data-prompt="Simulate temperature 1.2 in LLM predictor">🧠 Auto-test Temperature 1.2</button>
+        <button class="voice-chip-btn" data-prompt="Analyze and improve my prompt">🎨 Live Improve Prompt</button>
+        <button class="voice-chip-btn" data-prompt="Scale architecture traffic load to 300">🚀 Scale Traffic Load</button>
+        <button class="voice-chip-btn" data-prompt="Explain neural network backpropagation">📐 Neural Math</button>
+        <button class="voice-chip-btn" data-prompt="Toggle dark mode">🌙 Switch Dark Mode</button>
+        <button class="voice-chip-btn" data-prompt="Start the interactive quiz">🎯 Start Quiz</button>
+      </div>
+
+      <!-- Chat Messages Transcript -->
+      <div id="voice-messages-container" class="voice-messages-container">
+        <div class="voice-msg system-msg">
+          <div class="voice-msg-avatar">✨</div>
+          <div class="voice-msg-body">
+            <div class="voice-msg-author">JohnAI Voice Assistant</div>
+            <div class="voice-msg-content">
+              Welcome to <strong>JohnAI Studio</strong>! 🎙️ I am your AI Voice Assistant. Click the microphone icon below, select a quick topic, or type your question. I can answer tech & AI queries or perform actions like scrolling and changing themes!
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Interim Speech Transcript Box -->
+      <div id="voice-interim-box" class="voice-interim-box hidden">
+        <span class="interim-mic-pulse">🎙️</span>
+        <span id="voice-interim-text" class="interim-text">Listening to your voice...</span>
+      </div>
+
+      <!-- Controls Input Bar -->
+      <div class="voice-controls-bar">
+        <button id="mic-toggle-btn" class="mic-toggle-btn" title="Click to start/stop microphone">
+          <span class="mic-icon">🎙️</span>
+          <span class="mic-ripple-ring"></span>
+        </button>
+
+        <div class="voice-input-wrapper">
+          <input type="text" id="voice-text-input" placeholder="Say something or type here..." aria-label="Voice AI message input">
+          <button id="voice-send-btn" class="voice-send-btn" title="Send Message" aria-label="Send Message">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
+        </div>
+
+        <button id="voice-mute-btn" class="icon-btn-sm voice-mute-toggle" title="Toggle Audio Voice Output" aria-label="Mute Audio">
+          <span class="speaker-icon">🔊</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
